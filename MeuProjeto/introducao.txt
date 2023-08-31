@@ -3,5 +3,3 @@ Introdução de projeto...
 Novo Recurso: Barra de Navegação Aprimorada
 
 Neste novo recurso estamos planejando adicionar uma barra de navegação.
-
-Alteração Indesejada
