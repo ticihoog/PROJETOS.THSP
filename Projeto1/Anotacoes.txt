@@ -1,0 +1,12 @@
+Extensões instaladas: 
+- C/C++ Compile run 
+- C/C++ Extension Pack 
+- C/C++ Snippets
+- C/C++ Themes
+
+Instalei posteriormente:
+- Git Extesion Pack -> Ele fornece uma interface 
+gráfica para utilização do Git dentro do VS Code.
+- Git History -> Fornece um histório de log, arquivos e comunicação.
+- Drácula Official -> Personaliza o VS Code com temas diferentes 
+(este em especial tem a temática de drácula).
