@@ -1,0 +1,8 @@
+    Coesão: A função maxmin tem alta coesão funcional, pois sua única responsabilidade
+    é calcular o valor máximo e mínimo do vetor e retorná-los. Ela não executa tarefas 
+    adicionais ou desnecessárias.
+
+    Acoplamento: O acoplamento entre a função maxmin e o restante do programa é baixo, 
+    pois ela recebe os dados necessários como parâmetros e retorna os resultados através 
+    de referências. Isso torna a função independente do contexto em que é usada, o que é 
+    uma boa prática de programação, reduzindo o acoplamento.
