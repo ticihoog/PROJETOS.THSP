@@ -1,6 +1,12 @@
 #include <iostream>
 #include <string>
 
+enum class StatusLivro {
+    DISPONIVEL,
+    INDISPONIVEL
+};
+
+
 // Struct para representar o Livro
 struct Livro {
     std::string titulo;
@@ -10,10 +16,15 @@ struct Livro {
     int anoPublicacao;
     std::string isbn;
     double preco;
+    StatusLivro status; 
 
     // Método para abrir o livro
     void abrir() {
-        std::cout << "O livro '" << titulo << "' foi aberto para leitura." << std::endl;
+        if (status == StatusLivro::DISPONIVEL) {
+            std::cout << "O livro '" << titulo << "' foi aberto para leitura." << std::endl;
+        } else {
+            std::cout << "O livro '" << titulo << "' não está disponível para leitura." << std::endl;
+        }
     }
 
     // Método para fechar o livro
@@ -36,6 +47,14 @@ struct Livro {
         std::cout << "ISBN: " << isbn << std::endl;
         std::cout << "Preço: $" << preco << std::endl;
     }
+
+    void definirStatus(StatusLivro novoStatus) {
+        status = novoStatus;
+    }
+
+    StatusLivro verificarStatus() {
+        return status;
+    }
 };
 
 int main() {
@@ -50,6 +69,7 @@ int main() {
     meuLivro.anoPublicacao = 1899;
     meuLivro.isbn = "978-85-06-00037-3";
     meuLivro.preco = 29.99;
+    meuLivro.definirStatus(StatusLivro::INDISPONIVEL); 
 
     // Exibir informações detalhadas sobre o livro
     meuLivro.exibirInformacoes();

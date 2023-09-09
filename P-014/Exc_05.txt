@@ -14,5 +14,6 @@ Comportamentos:
 
     Abrir o livro para ler
     Fechar o livro após a leitura
+    Verificar se o livro está disponível
     Calcular o preço com base em descontos ou promoções
     Exibir informações detalhadas sobre o livro
