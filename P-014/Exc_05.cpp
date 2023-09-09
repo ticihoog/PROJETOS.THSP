@@ -1,8 +1,15 @@
 #include <iostream>
 #include <string>
 
+
+enum class StatusLivro {
+    DISPONIVEL,
+    INDISPONIVEL
+};
+
 // Struct para representar o Livro
-struct Livro {
+struct Livro
+{
     std::string titulo;
     std::string autor;
     std::string genero;
@@ -10,24 +17,29 @@ struct Livro {
     int anoPublicacao;
     std::string isbn;
     double preco;
+    StatusLivro status;
 
     // Método para abrir o livro
-    void abrir() {
+    void abrir()
+    {
         std::cout << "O livro '" << titulo << "' foi aberto para leitura." << std::endl;
     }
 
     // Método para fechar o livro
-    void fechar() {
+    void fechar()
+    {
         std::cout << "O livro '" << titulo << "' foi fechado após a leitura." << std::endl;
     }
 
     // Método para calcular o preço com desconto
-    double calcularPrecoComDesconto(double desconto) {
+    double calcularPrecoComDesconto(double desconto)
+    {
         return preco - (preco * desconto);
     }
 
     // Método para exibir informações detalhadas sobre o livro
-    void exibirInformacoes() {
+    void exibirInformacoes()
+    {
         std::cout << "Título: " << titulo << std::endl;
         std::cout << "Autor: " << autor << std::endl;
         std::cout << "Gênero: " << genero << std::endl;
@@ -36,12 +48,23 @@ struct Livro {
         std::cout << "ISBN: " << isbn << std::endl;
         std::cout << "Preço: $" << preco << std::endl;
     }
+
+    void definirStatus(StatusLivro novoStatus)
+    {
+        status = novoStatus;
+    }
+
+    StatusLivro verificarStatus()
+    {
+        return status;
+    }
 };
 
-int main() {
+int main()
+{
     // Criar uma instância da struct Livro
     Livro meuLivro;
-    
+
     // Preencher os campos da struct
     meuLivro.titulo = "Dom Casmurro";
     meuLivro.autor = "Machado de Assis";
@@ -50,6 +73,7 @@ int main() {
     meuLivro.anoPublicacao = 1899;
     meuLivro.isbn = "978-85-06-00037-3";
     meuLivro.preco = 29.99;
+    meuLivro.definirStatus(StatusLivro::INDISPONIVEL);
 
     // Exibir informações detalhadas sobre o livro
     meuLivro.exibirInformacoes();
