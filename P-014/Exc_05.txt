@@ -12,6 +12,7 @@ Características:
 
 Comportamentos:
 
+    Ler Resumo do Livro
     Abrir o livro para ler
     Fechar o livro após a leitura
     Verificar se o livro está disponível
