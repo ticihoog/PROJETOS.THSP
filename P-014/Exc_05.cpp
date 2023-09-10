@@ -1,87 +1,100 @@
 #include <iostream>
 #include <string>
 
-enum class StatusLivro {
+using namespace std;
+
+enum class StatusLivro
+{
     DISPONIVEL,
     INDISPONIVEL
 };
 
-
-// Struct para representar o Livro
-struct Livro {
-    std::string titulo;
-    std::string autor;
-    std::string genero;
+struct Livro
+{
+    string titulo;
+    string autor;
+    string genero;
+    string resumo;
     int numPaginas;
     int anoPublicacao;
-    std::string isbn;
+    string isbn;
     double preco;
-    StatusLivro status; 
+    StatusLivro status;
 
-    // Método para abrir o livro
-    void abrir() {
-        if (status == StatusLivro::DISPONIVEL) {
-            std::cout << "O livro '" << titulo << "' foi aberto para leitura." << std::endl;
-        } else {
-            std::cout << "O livro '" << titulo << "' não está disponível para leitura." << std::endl;
+    void abrir()
+    {
+        if (status == StatusLivro::DISPONIVEL)
+        {
+            cout << "O livro '" << titulo << "' foi aberto para leitura." << endl;
+        }
+        else
+        {
+            cout << "O livro '" << titulo << "' não está disponível para leitura." << endl;
         }
     }
 
-    // Método para fechar o livro
-    void fechar() {
-        std::cout << "O livro '" << titulo << "' foi fechado após a leitura." << std::endl;
+    void resumoLivro()
+    {
+        cout << "Resumo: " << endl
+             << resumo << endl
+             << endl;
     }
 
-    // Método para calcular o preço com desconto
-    double calcularPrecoComDesconto(double desconto) {
+    void fechar()
+    {
+        cout << "O livro '" << titulo << "' foi fechado após a leitura." << endl;
+    }
+
+    double calcularPrecoComDesconto(double desconto)
+    {
         return preco - (preco * desconto);
     }
 
-    // Método para exibir informações detalhadas sobre o livro
-    void exibirInformacoes() {
-        std::cout << "Título: " << titulo << std::endl;
-        std::cout << "Autor: " << autor << std::endl;
-        std::cout << "Gênero: " << genero << std::endl;
-        std::cout << "Número de páginas: " << numPaginas << std::endl;
-        std::cout << "Ano de publicação: " << anoPublicacao << std::endl;
-        std::cout << "ISBN: " << isbn << std::endl;
-        std::cout << "Preço: $" << preco << std::endl;
+    void exibirInformacoes()
+    {
+        cout << "Título: " << titulo << endl
+             << "Autor: " << autor << endl
+             << "Gênero: " << genero << endl
+             << "Número de páginas: " << numPaginas << endl
+             << "Ano de publicação: " << anoPublicacao << endl
+             << "ISBN: " << isbn << endl
+             << "Preço: $" << preco << endl;
     }
 
-    void definirStatus(StatusLivro novoStatus) {
+    void definirStatus(StatusLivro novoStatus)
+    {
         status = novoStatus;
     }
 
-    StatusLivro verificarStatus() {
+    StatusLivro verificarStatus()
+    {
         return status;
     }
 };
 
-int main() {
-    // Criar uma instância da struct Livro
+int main()
+{
     Livro meuLivro;
-    
-    // Preencher os campos da struct
+
     meuLivro.titulo = "Dom Casmurro";
     meuLivro.autor = "Machado de Assis";
     meuLivro.genero = "Ficção";
+    meuLivro.resumo = "Dom Casmurro é uma obra literária clássica escrita pelo renomado autor brasileiro Machado de Assis e publicada originalmente em 1899. O romance é narrado em primeira pessoa por Bento Santiago, também conhecido como Bentinho ou Dom Casmurro. A história é uma investigação da mente do protagonista enquanto ele relembra sua vida e seus relacionamentos, principalmente com sua amiga de infância e suposto amor, Capitu.";
     meuLivro.numPaginas = 250;
     meuLivro.anoPublicacao = 1899;
     meuLivro.isbn = "978-85-06-00037-3";
     meuLivro.preco = 29.99;
-    meuLivro.definirStatus(StatusLivro::INDISPONIVEL); 
+    meuLivro.definirStatus(StatusLivro::DISPONIVEL);
 
-    // Exibir informações detalhadas sobre o livro
     meuLivro.exibirInformacoes();
 
-    // Abrir e fechar o livro
     meuLivro.abrir();
+    meuLivro.resumoLivro();
     meuLivro.fechar();
 
-    // Calcular o preço com desconto de 10%
     double desconto = 0.1;
     double precoComDesconto = meuLivro.calcularPrecoComDesconto(desconto);
-    std::cout << "Preço com desconto de " << (desconto * 100) << "%: $" << precoComDesconto << std::endl;
+    cout << "Preço com desconto de " << (desconto * 100) << "%: $" << precoComDesconto << endl;
 
     return 0;
 }
