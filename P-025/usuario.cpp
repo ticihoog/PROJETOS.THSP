@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 
-class Tweet;  // Forward declaration
+class Tweet;  
 
 class Usuario {
 public:
@@ -38,7 +38,7 @@ void Usuario::postar_tweet(const std::string& conteudo) {
 }
 
 void Usuario::seguir(Usuario& usuario) {
-    if (this != &usuario) {  // Não pode seguir a si mesmo
+    if (this != &usuario) { 
         seguindo.push_back(&usuario);
         usuario.seguidores.push_back(this);
     }
@@ -81,7 +81,7 @@ private:
 };
 
 int main() {
-    // Exemplo de uso da classe Usuario
+   
     Usuario usuario1("user1", "Nome Real 1");
     Usuario usuario2("user2", "Nome Real 2");
 
