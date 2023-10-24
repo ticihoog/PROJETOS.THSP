@@ -9,8 +9,7 @@ class Data {
     int dia, mes, ano;
 
 public:
-    
-    static int compara(Data d1, Data d2) {
+    static int compara(const Data& d1, const Data& d2) {
         if (d1.ano < d2.ano) return -1;
         if (d1.ano > d2.ano) return 1;
         if (d1.mes < d2.mes) return -1;
@@ -25,7 +24,7 @@ public:
         mes = _mes;
         ano = _ano;
     }
-    string toString() {
+    string toString() const {
         string ret = "";
         ret.append(to_string(dia));
         ret.append("/");
@@ -42,6 +41,7 @@ public:
     virtual void mostraMediana() = 0;
     virtual void mostraMenor() = 0;
     virtual void mostraMaior() = 0;
+    virtual void listarEmOrdem() = 0;
 };
 
 class ListaNomes : public Lista {
@@ -87,6 +87,16 @@ public:
             cout << "Maior nome: " << lista[0] << endl;
         }
     }
+
+    void listarEmOrdem() {
+        if (!lista.empty()) {
+            sort(lista.begin(), lista.end());
+            cout << "Listando nomes em ordem:" << endl;
+            for (const string &nome : lista) {
+                cout << nome << endl;
+            }
+        }
+    }
 };
 
 class ListaDatas : public Lista {
@@ -99,7 +109,7 @@ public:
         cin >> n;
         for (int i = 0; i < n; i++) {
             int dia, mes, ano;
-            cout << "Digite a Data " << (i + 1) << " (Dia Mês Ano - Ex: 21 04 1988): ";
+            cout << "Digite a Data " << (i + 1) << " (dia mês ano): ";
             cin >> dia >> mes >> ano;
             Data data(dia, mes, ano);
             lista.push_back(data);
@@ -135,6 +145,18 @@ public:
             cout << "Maior data: " << lista[0].toString() << endl;
         }
     }
+
+    void listarEmOrdem() {
+        if (!lista.empty()) {
+            sort(lista.begin(), lista.end(), [](const Data &d1, const Data &d2) {
+                return Data::compara(d1, d2) < 0;
+            });
+            cout << "Listando datas em ordem:" << endl;
+            for (const Data &data : lista) {
+                cout << data.toString() << endl;
+            }
+        }
+    }
 };
 
 class ListaSalarios : public Lista {
@@ -147,7 +169,7 @@ public:
         cin >> n;
         for (int i = 0; i < n; i++) {
             float salario;
-            cout << "Digite o Salário (sem vírgula)" << (i + 1) << ": ";
+            cout << "Digite o Salário " << (i + 1) << ": ";
             cin >> salario;
             lista.push_back(salario);
         }
@@ -181,6 +203,16 @@ public:
             cout << "Maior salário: " << lista[0] << endl;
         }
     }
+
+    void listarEmOrdem() {
+        if (!lista.empty()) {
+            sort(lista.begin(), lista.end());
+            cout << "Listando salários em ordem:" << endl;
+            for (const float salario : lista) {
+                cout << salario << endl;
+            }
+        }
+    }
 };
 
 class ListaIdades : public Lista {
@@ -193,7 +225,7 @@ public:
         cin >> n;
         for (int i = 0; i < n; i++) {
             int idade;
-            cout << "Idade " << (i + 1) << ": ";
+            cout << "Digite a Idade " << (i + 1) << ": ";
             cin >> idade;
             lista.push_back(idade);
         }
@@ -229,6 +261,16 @@ public:
             cout << "Maior idade: " << lista[0] << endl;
         }
     }
+
+    void listarEmOrdem() {
+        if (!lista.empty()) {
+            sort(lista.begin(), lista.end());
+            cout << "Listando idades em ordem:" << endl;
+            for (int idade : lista) {
+                cout << idade << endl;
+            }
+        }
+    }
 };
 
 int main() {
@@ -251,6 +293,9 @@ int main() {
     listaDeListas.push_back(&listaIdades);
 
     for (Lista* l : listaDeListas) {
+        cout << "----------------------------------------" << endl;
+        l->listarEmOrdem();
+        cout << "Mediana: ";
         l->mostraMediana();
         l->mostraMenor();
         l->mostraMaior();
