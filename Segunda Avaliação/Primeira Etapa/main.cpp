@@ -44,6 +44,8 @@ class Lista
 public:
     virtual void entradaDeDados() = 0;
     virtual void mostraMediana() = 0;
+    virtual void mostraMenor() = 0;
+    virtual void mostraMaior() = 0;
 };
 
 class ListaNomes : public Lista
@@ -86,6 +88,17 @@ public:
         }
     }
 
+    void mostraMenor()
+    {
+        sort(lista.begin(), lista.end());
+        cout << "Menor: " << lista[0] << endl;
+    }
+
+    void mostraMaior()
+    {
+        sort(lista.begin(), lista.end());
+        cout << "Maior: " << lista[lista.size() - 1] << endl;
+    }
 };
 
 class ListaDatas : public Lista
@@ -131,6 +144,20 @@ public:
         }
     }
 
+    void mostraMenor()
+    {
+        sort(lista.begin(), lista.end(), [](const Data &a, const Data &b)
+             { return Data::compara(a, b) < 0; });
+        cout << "Menor: " << lista[0].toString() << endl;
+    }
+
+    void mostraMaior()
+    {
+        sort(lista.begin(), lista.end(), [](const Data &a, const Data &b)
+             { return Data::compara(a, b) < 0; });
+        int tamanho = lista.size();
+        cout << "Maior: " << lista[tamanho - 1].toString() << endl;
+    }
 };
 
 class ListaSalarios : public Lista
@@ -172,6 +199,15 @@ public:
         }
     }
 
+    void mostraMenor()
+    {
+        cout << "Menor: " << *min_element(lista.begin(), lista.end()) << endl;
+    }
+
+    void mostraMaior()
+    {
+        cout << "Maior: " << *max_element(lista.begin(), lista.end()) << endl;
+    }
 };
 
 class ListaIdades : public Lista
@@ -213,6 +249,15 @@ public:
         }
     }
 
+    void mostraMenor()
+    {
+        cout << "Menor: " << *min_element(lista.begin(), lista.end()) << endl;
+    }
+
+    void mostraMaior()
+    {
+        cout << "Maior: " << *max_element(lista.begin(), lista.end()) << endl;
+    }
 };
 
 int main()
@@ -240,6 +285,8 @@ int main()
     for (Lista *l : listaDeListas)
     {
         l->mostraMediana();
+        l->mostraMenor();
+        l->mostraMaior();
         cout << endl;
     }
 }
